@@ -37,7 +37,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -46,6 +45,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'web-app-test-hac887'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1ed1821371df4cb0be25422ddf89cbeb }}
+        publish-profile: ${{  secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }}
         images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_8ac322a8738c4c1dab025286cfe981b0 }}/appsvc/staticsite:${{ github.sha }}'
