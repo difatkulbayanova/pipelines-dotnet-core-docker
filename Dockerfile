@@ -8,10 +8,10 @@ COPY . ./
 # dotnet commands to build, test, and publish
 RUN dotnet restore
 RUN dotnet build -c Release
-RUN dotnet publish -c Release -output out
+RUN dotnet publish -c Release
 
 # Second stage - Build runtime image
 FROM mcr.microsoft.com/dotnet/sdk:7.0
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=build-env /app .
 ENTRYPOINT ["dotnet", "pipelines-dotnet-docker.dll"]
