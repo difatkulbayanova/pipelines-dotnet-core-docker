@@ -8,7 +8,7 @@ COPY . ./
 # dotnet commands to build, test, and publish
 RUN dotnet restore
 RUN dotnet build -c Release
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -output out
 
 # Second stage - Build runtime image
 FROM mcr.microsoft.com/dotnet/sdk:7.0
